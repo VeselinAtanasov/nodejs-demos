@@ -1,0 +1,14 @@
+{
+  "name": "nodejs-task",
+  "version": "1.0.0-1",
+  "description": "how to use nodejs promises",
+  "main": "index.js",
+  "scripts": {
+    "test": "start"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "VA",
+  "license": "MIT"
+}
