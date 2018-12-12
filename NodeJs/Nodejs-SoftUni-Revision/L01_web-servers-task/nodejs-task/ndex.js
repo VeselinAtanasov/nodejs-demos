@@ -17,5 +17,3 @@ db.load().then(data => {
   console.log('THEN: ');
   console.log(data);
 }).catch(err => console.dir(err));
-
-

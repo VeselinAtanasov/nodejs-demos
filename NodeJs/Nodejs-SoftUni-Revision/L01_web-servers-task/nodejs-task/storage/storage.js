@@ -9,7 +9,6 @@ let db = (function () {
    * @param {string} key
    * @param {string} value
    * @throws {new Error}
-   * @returns {string} value
    */
   function put (key, value) {
     if (typeof key !== 'string') {
@@ -87,7 +86,7 @@ let db = (function () {
   }
   /**
    * Function which returns promise
-   * returns {promise}
+   * @returns {promise}
    */
   function save () {
     let json = JSON.stringify(storage);
@@ -105,7 +104,7 @@ let db = (function () {
 
   /**
    * Function which returns promise
-   * returns {promise}
+   * @returns {promise}
    */
   function load () {
     return new Promise((resolve, reject) => {
