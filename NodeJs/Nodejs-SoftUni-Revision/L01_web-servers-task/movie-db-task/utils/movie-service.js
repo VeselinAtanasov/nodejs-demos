@@ -27,7 +27,6 @@ module.exports = {
     });
   },
   getMovieById: function (id) {
-    console.log(id);
     return new Promise((resolve, reject) => {
       if (id === undefined || db[id] === undefined) {
         return reject(new Error('Wrong Id'));

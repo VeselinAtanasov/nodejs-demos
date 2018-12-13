@@ -5,7 +5,7 @@ module.exports = function (req, res) {
   if (req.path === '/viewAllMovies' && req.method === 'GET') {
     fs.readFile('./views/viewAll.html', 'utf8', function (err, data) {
       if (err) {
-        console.log(err);
+        req.handleError(req, res);
         return;
       }
       movieService.getAllMovies().then(films => {

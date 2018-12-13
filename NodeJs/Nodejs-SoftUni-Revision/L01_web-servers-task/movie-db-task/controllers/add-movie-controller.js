@@ -6,7 +6,7 @@ module.exports = function (req, res) {
   if (req.path === '/addMovie' && req.method === 'GET') {
     fs.readFile('./views/addMovie.html', 'utf8', function (err, data) {
       if (err) {
-        console.log(err);
+        req.handleError(req, res);
         return;
       }
       res.writeHead(200, {
@@ -19,8 +19,7 @@ module.exports = function (req, res) {
     let form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
       if (err) {
-        console.log('error during parsing the form...');
-        console.log(err);
+        req.handleError(req, res);
         return;
       }
       if (fields.moviePoster === null || fields.moviePoster === undefined || fields.moviePoster === '') {
@@ -39,7 +38,7 @@ module.exports = function (req, res) {
       } else {
         fs.readFile('./views/addMovie.html', 'utf8', function (err, data) {
           if (err) {
-            console.log(err);
+            req.handleError(req, res);
             return;
           }
           movieService.saveFilm(fields).then(movies => {

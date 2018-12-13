@@ -6,7 +6,8 @@ module.exports = function (req, res) {
     let id = req.path.split('/').pop();
     fs.readFile('./views/details.html', 'utf8', function (err, data) {
       if (err) {
-        console.log(err);
+        req.handleError(req, res);
+        return;
       }
       movieService.getMovieById(id).then(film => {
         let userData = `<div class="content">
