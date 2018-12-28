@@ -6,7 +6,7 @@ class FileAPI {
     this.res = res;
   }
   loadHtmlFile (filePath) {
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
       fs.readFile(`./views/${filePath}`, 'utf8', (err, data) => {
         if (err) {
           reject(err);
@@ -19,7 +19,7 @@ class FileAPI {
         this.res.end();
         resolve();
       });
-    });
+    }.bind(this));
   }
 }
 
