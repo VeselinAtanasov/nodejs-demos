@@ -1,0 +1,43 @@
+
+2018-12-14 18:30:59.397, tid=0x00007f169a1fd700, sid=0x0, DBG3: ### ~JSOperationCallback(), nestedExecutionDepth: 0
+2018-12-14 18:30:59.397, tid=0x00007f169a1fd700, sid=0x0, DBG2: Session 42 : Execute element <ISUP:IAM>
+                                Boolean Property 'confirmation', value: true
+                                Int Property 'group', value: 1
+                                PropertyList Property 'params'
+                                        PropertyList Property 'called_party'
+                                                Int Property 'NAI', value: 4
+                                                Int Property 'NPI', value: 1
+                                                String Property 'address', value: 84898158995
+                                        PropertyList Property 'calling_party'
+                                                Int Property 'NAI', value: 4
+                                                Int Property 'NPI', value: 1
+                                                String Property 'address', value: 13184913200032
+
+2018-12-14 18:31:10.373, tid=0x00007f16a93fb700, sid=0x0, DBG:  Session 42 : * Queue received event 'ISUP.ACM'
+2018-12-14 18:31:10.373, tid=0x00007f16a93fb700, sid=0x0, DBG2: Session 42 : Structure of event 'ISUP.ACM':
+                                Int Property 'CIC', value: 10
+                                Int Property 'circuit', value: 10
+                                String Property 'name', value: ISUP.ACM
+
+======================================================================================================================================
+								
+2018-12-14 17:05:13.254, tid=0x00007f47d62cc700, sid=0x78323381c900102, DBG2:   Session 680 : Execute element <ISUP:IAM>
+                                Int Property 'circuit', value: 5
+                                Boolean Property 'confirmation', value: true
+                                Int Property 'group', value: 1
+                                PropertyList Property 'params'
+                                        PropertyList Property 'called_party'
+                                                Int Property 'NAI', value: 4
+                                                Int Property 'NPI', value: 1
+                                                String Property 'address', value: 84898158995
+                                        PropertyList Property 'calling_party'
+                                                Int Property 'NAI', value: 4
+                                                Int Property 'NPI', value: 1
+                                                String Property 'address', value: 13184913200032
+
+												
+2018-12-14 17:05:33.981, tid=0x00007f47e3efb700, sid=0x78323381c900102, DBG:    Session 680 : * Queue received event 'ISUP.ANM'
+2018-12-14 17:05:33.981, tid=0x00007f47e3efb700, sid=0x78323381c900102, DBG2:   Session 680 : Structure of event 'ISUP.ANM':
+                                Int Property 'CIC', value: 5
+                                Int Property 'circuit', value: 5
+                                String Property 'name', value: ISUP.ANM
