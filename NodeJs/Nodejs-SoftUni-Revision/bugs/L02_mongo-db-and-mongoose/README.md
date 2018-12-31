@@ -25,7 +25,25 @@ Issue is resolved if I pass arrow function to the Promise constructor:
   This is because arrow functions do ot keeps the 'this' value
 
 #### TODO:
-##### v.1.0.1 - Issue solved also in case of regualr function - the function itself is binded to this:
+##### v.1.0.2 - Another .bind(this) is needed in case we pass to fs.readFile not arrow function, but regular function:
+  loadHtmlFile (filePath) {
+    return new Promise(function (resolve, reject) {
+      fs.readFile(`./views/${filePath}`, 'utf8', function(err, data){
+        if (err) {
+          reject(err);
+          return;
+        }
+        this.res.writeHead(200, {
+          'content-type': 'text/html'
+        });
+        this.res.write(data);
+        this.res.end();
+        resolve();
+      }.bind(this));
+    }.bind(this));
+  }
+
+##### v.1.0.1 - Issue solved also in case of regular function - the function itself is binded to this:
   loadHtmlFile (filePath) {
     return new Promise(function (resolve, reject) {
       fs.readFile(`./views/${filePath}`, 'utf8', (err, data) => {
