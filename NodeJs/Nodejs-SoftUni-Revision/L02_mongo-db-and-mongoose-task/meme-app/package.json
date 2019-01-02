@@ -1,0 +1,20 @@
+{
+  "name": "meme-app",
+  "version": "1.0.0",
+  "description": "app which uses mongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mongo",
+    "mongoose",
+    "nodejs",
+    "promises"
+  ],
+  "author": "VA",
+  "license": "MIT",
+  "dependencies": {
+    "formidable": "^1.2.1"
+  }
+}
