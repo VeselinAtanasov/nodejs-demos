@@ -6,22 +6,11 @@ let HOME_PAGE = require('../utils/constants').HOME_PAGE;
 module.exports = (req, res) => {
   if (req.pathname === '/' && req.method === 'GET') {
     let fileAPI = new FileAPI(req, res);
-    fileAPI.loadDynamicHTML(HOME_PAGE, 200)
-      .then(html => {
-        tagService
-          .getAllTags()
-          .then(tags => {
-            let displayTags = '';
-            for (let tag of tags) {
-              displayTags += `<div class='tag' id="${tag._id}">${tag.tagName}</div>`;
-            }
-            fileAPI.updateDynamicHTML(html, displayTags, REPLACE_ME);
-          })
-          .catch(err => {
-            console.log(err);
-            console.log('Fetching data from db failed.');
-            fileAPI.updateDynamicHTML(html);
-          });
+    Promise.all([ fileAPI.loadDynamicHTML(HOME_PAGE), tagService.getAllTags() ])
+      .then((values) => {
+        let [ html, serviceData ] = values;
+        let finalHtml = fileAPI.updateDynamicHTML(html, serviceData, REPLACE_ME);
+        fileAPI.sendHTML(finalHtml, 200);
       })
       .catch(e => console.log(e));
   } else {

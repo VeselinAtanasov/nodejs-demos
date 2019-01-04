@@ -6,23 +6,26 @@ class FileAPI {
     this.res = res;
   }
 
-  loadDynamicHTML (htmlFilename, statusCode) {
+  loadDynamicHTML (htmlFilename) {
     return new Promise(function (resolve, reject) {
       fs.readFile(`./views/${htmlFilename}`, function (err, data) {
         if (err) {
           return reject(err);
         }
-        this.res.writeHead(statusCode, {
-          'Content-Type': 'text/html'
-        });
         resolve(data);
-      }.bind(this));
-    }.bind(this));
+      });
+    });
+  }
+  sendHTML (html, statusCode) {
+    this.res.writeHead(statusCode, {
+      'Content-Type': 'text/html'
+    });
+    this.res.write(html);
+    this.res.end();
   }
 
   updateDynamicHTML (data, serviceData, replaceConstant) {
-    let html = this.extendHTML(data, serviceData, replaceConstant);
-    this.res.end(html);
+    return this.extendHTML(data, serviceData, replaceConstant);
   }
 
   extendHTML (data, serviceData, replaceConstant) {
