@@ -82,6 +82,12 @@ class FileAPI {
       }
     }
   }
+  redirect (path) {
+    this.res.writeHead(302, {
+      'Location': `${path}`
+    });
+    this.res.end();
+  }
 }
 
 module.exports = FileAPI;
