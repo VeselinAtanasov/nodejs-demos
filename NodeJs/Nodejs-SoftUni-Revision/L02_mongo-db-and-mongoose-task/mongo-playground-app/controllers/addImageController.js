@@ -22,7 +22,7 @@ module.exports = (req, res) => {
         .catch(e => console.log(e));
     });
   } else if (req.pathname === '/delete' && req.method === 'GET') {
-
+    console.log(req.pathname);
   } else {
     return true;
   }
