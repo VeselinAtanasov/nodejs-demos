@@ -45,8 +45,7 @@ module.exports = (req, res) => {
             privacy: fields.status,
             dateStamp: Date.now()
           });
-          db
-            .save()
+          db.save()
             .then()
             .catch(err => console.log(err));
         })

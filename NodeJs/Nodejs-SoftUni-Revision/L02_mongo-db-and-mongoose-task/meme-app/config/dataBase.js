@@ -33,6 +33,7 @@ let save = () => {
 
 let add = (movie) => {
   db.push(movie);
+  return this;
 };
 
 let dbCopy = () => {
@@ -41,8 +42,6 @@ let dbCopy = () => {
 
 let getById = (id) => {
   for (let obj of db) {
-    console.log(obj['id']);
-    console.log(id);
     if (obj['id'] === id) {
       return obj;
     }

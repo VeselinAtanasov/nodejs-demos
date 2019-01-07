@@ -7,6 +7,8 @@ module.exports = {
         resolve(tags);
       }).catch(err => resolve(err));
     });
+  },
+  addTag: function (tag) {
+
   }
-}
-;
+};

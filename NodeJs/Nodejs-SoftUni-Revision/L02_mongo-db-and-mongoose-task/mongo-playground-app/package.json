@@ -9,6 +9,7 @@
   "author": "VA",
   "license": "MIT",
   "dependencies": {
+    "formidable": "^1.2.1",
     "mongoose": "^5.4.1"
   }
 }
