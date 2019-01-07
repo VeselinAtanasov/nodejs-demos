@@ -1,6 +1,4 @@
 const formidable = require('formidable');
-
-const formidable = require('formidable');
 const tagService = require('../services/tagService');
 const FileAPI = require('../services/apis/FileAPI');
 
