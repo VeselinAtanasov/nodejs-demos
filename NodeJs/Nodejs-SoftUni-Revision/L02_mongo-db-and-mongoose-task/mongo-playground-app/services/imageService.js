@@ -35,50 +35,36 @@ module.exports = {
         .catch(e => reject(e));
     });
   },
-  imageQueryHandler: function (queryData) {
-    let params = Object.values(queryData).filter(x => x !== '');
-    if (params.length === 0) {
-      return new Promise((resolve, reject) => {
-        Image
-          .find()
-          .then(resp => resolve(resp))
-          .catch(e => reject(e));
-      });
-    } else if (queryData.tagName !== '' && (queryData.afterDate !== '' || queryData.beforeDate !== '')) {
-      let limit = 10;
-      if (queryData.Limit && queryData.Limit !== '' && !Number.isNaN(queryData.Limit)) {
-        limit = Number(queryData.Limit);
-      }
-      queryData.beforeDate = (queryData.beforeDate === '' || queryData.beforeDate === undefined) ? new Date(Date.now()).toISOString() : queryData.beforeDate;
-      queryData.afterDate = (queryData.afterDate === '' || queryData.afterDate === undefined) ? new Date(-8640000000000000).toISOString() : queryData.afterDate;
+  getImages: function (queryData) {
+    let tags = queryData.tagName.split(',').filter(e => e.length > 0).filter(e => e === 'Write tags separted by ,');
+    let limit = (queryData.Limit && queryData.Limit !== '' && !Number.isNaN(queryData.Limit)) ? Number(queryData.Limit) : 10;
+    queryData.beforeDate = (queryData.beforeDate === '' || queryData.beforeDate === undefined) ? new Date(Date.now()).toISOString() : queryData.beforeDate;
+    queryData.afterDate = (queryData.afterDate === '' || queryData.afterDate === undefined) ? new Date(-8640000000000000).toISOString() : queryData.afterDate;
+    let obj = tags.length !== 0 ? { name: { $in: tags } } : {};
 
-      return new Promise((resolve, reject) => {
-        Image.find()
-          .where('creationDate').lt(queryData.beforeDate).gt(queryData.afterDate)
-          .limit(limit)
-          .sort('-creationDate')
-          .then(resp => resolve(resp))
-          .catch(e => reject(e));
-      });
-    } else if (queryData.tagName !== '' && queryData.afterDate === '' && queryData.beforeDate === '') {
-      let tags = queryData.tagName.split(',').filter(e => e.length > 0);
-      let limit = 10;
-      if (queryData.Limit && queryData.Limit !== '' && !Number.isNaN(queryData.Limit)) {
-        limit = Number(queryData.Limit);
-      }
-      return new Promise((resolve, reject) => {
-        Tag
-          .find({ name: { $in: tags } })
-          .then(resp => {
-            let tagIds = resp.map(m => m.id);
-            Image
-              .find({ tags: { $in: tagIds } })
-              .sort('-creationDate')
-              .limit(limit)
-              .then(images => resolve(images));
-          })
-          .catch(e => reject(e));
-      });
-    }
+    return new Promise((resolve, reject) => {
+      Tag
+        .find(obj)
+        .then(resp => {
+          let tagIds = resp.map(m => m.id);
+          let dataFilter = tags.length !== 0 ? { tags: { $in: tagIds } } : {};
+          Image
+            .find(dataFilter)
+            .where('creationDate').lt(queryData.beforeDate).gt(queryData.afterDate)
+            .sort('-creationDate')
+            .limit(limit)
+            .then(images => resolve(images));
+        })
+        .catch(e => reject(e));
+    });
+  },
+  deleteImageById: function (id) {
+    return new Promise((resolve, reject) => {
+      Image
+        .findByIdAndRemove({ _id: id })
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+    });
   }
+
 };

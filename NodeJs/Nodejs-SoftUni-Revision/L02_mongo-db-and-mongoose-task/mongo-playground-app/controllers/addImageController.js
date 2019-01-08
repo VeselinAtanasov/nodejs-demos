@@ -22,7 +22,12 @@ module.exports = (req, res) => {
         .catch(e => console.log(e));
     });
   } else if (req.pathname === '/delete' && req.method === 'GET') {
-    console.log(req.pathname);
+    let fileAPI = new FileAPI(req, res);
+    let id = req.url.split('id=').pop();
+    imageService
+      .deleteImageById(id)
+      .then(() => fileAPI.redirect('/'))
+      .catch(e => console.log(e));
   } else {
     return true;
   }
