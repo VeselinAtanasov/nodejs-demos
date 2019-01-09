@@ -12,7 +12,7 @@ module.exports = (req, res) => {
         return;
       }
 
-      tagService.addTag(fields).then(data => {
+      tagService.addTag(fields).then(() => {
         fileAPI.redirect('/');
       })
         .catch(err => console.log(err));

@@ -13,7 +13,6 @@ module.exports = (req, res) => {
         console.log(err);
         return;
       }
-      console.log(req.pathquery);
       let fileAPI = new FileAPI(req, res);
       Promise.all([ fileAPI.loadDynamicHTML(RESULTS_HTML), imageService.getImages(req.pathquery) ])
         .then((responses) => {
