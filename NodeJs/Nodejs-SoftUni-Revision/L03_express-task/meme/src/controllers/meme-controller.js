@@ -1,6 +1,5 @@
 const fs = require('fs')
-const db = require('./../config/dataBase')
-const tagDb = require('./../config/tagDb')
+const db = require('../config/dataBase')
 const url = require('url')
 const qs = require('querystring')
 const shortid = require('shortid')
