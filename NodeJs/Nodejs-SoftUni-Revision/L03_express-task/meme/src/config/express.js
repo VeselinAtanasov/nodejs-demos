@@ -6,8 +6,8 @@ const fileUpLoader = require('express-fileupload');
 module.exports = (app) => {
   app.engine('hbs', handlebars({
     extname: '.hbs',
-    layoutsDir: 'views/layouts'
-    // defaultLayout: 'main' - for footer and head
+    layoutsDir: 'views/layouts',
+    defaultLayout: 'main'
   }));
   app.set('view engine', 'hbs');
 

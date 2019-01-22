@@ -6,9 +6,7 @@ module.exports = {
   },
   post: async (req, res) => {
     let params = req.body;
-    console.log(params);
-    let response = await genreService.addGenre(params);
-    console.log(response);
+    await genreService.addGenre(params);
     res.redirect('/');
   }
 };
