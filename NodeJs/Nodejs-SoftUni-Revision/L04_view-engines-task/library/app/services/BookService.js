@@ -68,6 +68,28 @@ class BookService {
         .catch(e => reject(e));
     });
   }
+
+  deleteBook (id) {
+    return new Promise((resolve, reject) => {
+      Book
+        .findOne({ _id: id })
+        .then(book => {
+          let fileName = book.bookPoster.split('/').pop();
+          Book
+            .findOneAndDelete({ _id: id })
+            .then(deleted => {
+              fileApi
+                .remove(fileName)
+                .then(resp => resolve(resp))
+                .catch(e => {
+                  console.log('Data was removed from DB, but deletion from local storage failed');
+                });
+            })
+            .catch(e => reject(e));
+        })
+        .catch(e => reject(e));
+    });
+  }
 }
 
 module.exports = BookService;

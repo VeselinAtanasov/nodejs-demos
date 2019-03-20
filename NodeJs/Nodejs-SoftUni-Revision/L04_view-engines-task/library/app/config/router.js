@@ -6,6 +6,7 @@ module.exports = (app) => {
   app.post('/addBook', controllers.bookController.createNewBook);
   app.get('/viewAllBooks', controllers.bookController.viewAllBooks);
   app.get('/details/:id', controllers.bookController.viewBookById);
+  app.get('/delete/:id', controllers.bookController.deleteBookById);
 
   app.all('*', (req, res) => {
     res.status(404);

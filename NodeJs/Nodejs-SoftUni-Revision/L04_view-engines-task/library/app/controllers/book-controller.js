@@ -35,5 +35,23 @@ module.exports = {
         res.render('books/details', book);
       })
       .catch(e => console.log(e));
+  },
+
+  deleteBookById: (req, res) => {
+    let id = req.params.id;
+    console.log(`Book with id ${id} will be deleted`);
+    bookService
+      .deleteBook(id)
+      .then(book => {
+        bookService
+          .getAllBooks()
+          .then(books => {
+            console.log(books);
+            res.render('books/viewAll', { books });
+            // res.redirect('/addBook');
+          })
+          .catch(e => console.log(e));
+      })
+      .catch(e => console.log(e));
   }
 };
