@@ -21,14 +21,12 @@ module.exports = {
     bookService
       .getAllBooks()
       .then(books => {
-        console.log(books);
         res.render('books/viewAll', { books });
       })
       .catch(e => console.log(e));
   },
   viewBookById: (req, res) => {
     let id = req.params.id;
-    console.log(id);
     bookService
       .getBookById(id)
       .then(book => {
@@ -39,15 +37,15 @@ module.exports = {
 
   deleteBookById: (req, res) => {
     let id = req.params.id;
-    console.log(`Book with id ${id} will be deleted`);
     bookService
       .deleteBook(id)
       .then(book => {
         bookService
           .getAllBooks()
           .then(books => {
-            console.log(books);
-            res.render('books/viewAll', { books });
+            res.render('books/viewAll', { books }, (err, html) =>{
+              res.redirect('/viewAllBooks');
+            });
             // res.redirect('/addBook');
           })
           .catch(e => console.log(e));
