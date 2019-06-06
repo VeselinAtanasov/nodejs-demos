@@ -15,7 +15,7 @@
     "express-fileupload": "1.1.1-alpha.1",
     "express-handlebars": "3.0.0",
     "formidable": "^1.1.1",
-    "handlebars": "4.0.12",
+    "handlebars": "4.0.14",
     "mongoose": "5.4.5",
     "shortid": "^2.2.8"
   }
